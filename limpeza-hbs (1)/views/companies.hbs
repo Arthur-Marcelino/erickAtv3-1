@@ -1,0 +1,60 @@
+{{!< layouts/main }}
+<section class="crud-page">
+  <h2>Empresas</h2>
+
+  <form id="company-form" method="POST" action="/companies" class="form-card">
+    <input type="hidden" name="id" value="{{editCompany.id}}" />
+    <label>
+      Nome
+      <input name="name" value="{{editCompany.name}}" required />
+    </label>
+    <label>
+      Contato
+      <input name="contact" value="{{editCompany.contact}}" />
+    </label>
+    <label>
+      Observações
+      <input name="notes" value="{{editCompany.notes}}" />
+    </label>
+    <div class="form-actions">
+      <button type="submit">{{#if editCompany.id}}Salvar alterações{{else}}Criar empresa{{/if}}</button>
+      {{#if editCompany.id}}
+        <a class="btn ghost" href="/companies">Cancelar</a>
+      {{/if}}
+    </div>
+  </form>
+
+  <section class="list-section">
+    <h3>Lista de empresas</h3>
+    {{#if companies.length}}
+      <ul class="list">
+        {{#each companies}}
+          <li class="list-item">
+            <div>
+              <strong>{{this.name}}</strong>
+              <div class="muted">{{this.contact}}</div>
+            </div>
+            <div class="actions">
+              <a href="/companies/{{this.id}}" class="btn small">Detalhes</a>
+              <a href="/companies/edit/{{this.id}}" class="btn small ghost">Editar</a>
+              <form method="POST" action="/companies/delete/{{this.id}}" class="inline-form" onsubmit="return confirm('Excluir empresa?');">
+                <button class="btn small danger" type="submit">Excluir</button>
+              </form>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p class="muted">Nenhuma empresa cadastrada ainda.</p>
+    {{/if}}
+  </section>
+
+  {{#if selectedCompany}}
+  <section class="detail-card">
+    <h3>Detalhes: {{selectedCompany.name}}</h3>
+    <p><strong>Contato:</strong> {{selectedCompany.contact}}</p>
+    <p><strong>Observações:</strong> {{selectedCompany.notes}}</p>
+    <a class="btn" href="/companies">Voltar</a>
+  </section>
+  {{/if}}
+</section>

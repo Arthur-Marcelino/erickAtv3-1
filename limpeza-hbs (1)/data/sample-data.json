@@ -1,0 +1,65 @@
+{
+  "companies": [
+    {
+      "id": "c1",
+      "name": "Casa & Companhia",
+      "contact": "(11) 99999-1111",
+      "notes": "Contrato mensal"
+    },
+    {
+      "id": "c2",
+      "name": "Limpeza Rápida Ltda",
+      "contact": "(21) 98888-2222",
+      "notes": "Serviço pontual"
+    },
+    {
+      "id": "c3",
+      "name": "Brilho Total",
+      "contact": "(31) 97777-3333",
+      "notes": "Cliente corporativo"
+    }
+  ],
+  "houses": [
+    {
+      "id": "h1",
+      "address": "Rua das Flores 123",
+      "city": "São Paulo",
+      "size": 120,
+      "companyId": "c1"
+    },
+    {
+      "id": "h2",
+      "address": "Av. Central 50",
+      "city": "Rio de Janeiro",
+      "size": 85,
+      "companyId": "c2"
+    },
+    {
+      "id": "h3",
+      "address": "Travessa do Sol 9",
+      "city": "Belo Horizonte",
+      "size": 140,
+      "companyId": "c3"
+    }
+  ],
+  "employees": [
+    {
+      "id": "e1",
+      "name": "Ana Silva",
+      "phone": "(11) 98888-0001",
+      "specialty": "Limpeza pesada"
+    },
+    {
+      "id": "e2",
+      "name": "Carlos Souza",
+      "phone": "(21) 98888-0002",
+      "specialty": "Organização"
+    },
+    {
+      "id": "e3",
+      "name": "Mariana Costa",
+      "phone": "(31) 98888-0003",
+      "specialty": "Detalhes e janelas"
+    }
+  ]
+}

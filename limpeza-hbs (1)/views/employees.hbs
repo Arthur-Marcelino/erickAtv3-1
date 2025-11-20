@@ -1,0 +1,60 @@
+{{!< layouts/main }}
+<section class="crud-page">
+  <h2>Funcionários</h2>
+
+  <form id="employee-form" method="POST" action="/employees" class="form-card">
+    <input type="hidden" name="id" value="{{editEmployee.id}}" />
+    <label>
+      Nome
+      <input name="name" value="{{editEmployee.name}}" required />
+    </label>
+    <label>
+      Telefone
+      <input name="phone" value="{{editEmployee.phone}}" />
+    </label>
+    <label>
+      Especialidade
+      <input name="specialty" value="{{editEmployee.specialty}}" />
+    </label>
+    <div class="form-actions">
+      <button type="submit">{{#if editEmployee.id}}Salvar alterações{{else}}Adicionar funcionário{{/if}}</button>
+      {{#if editEmployee.id}}
+        <a class="btn ghost" href="/employees">Cancelar</a>
+      {{/if}}
+    </div>
+  </form>
+
+  <section class="list-section">
+    <h3>Lista de funcionários</h3>
+    {{#if employees.length}}
+      <ul class="list">
+        {{#each employees}}
+          <li class="list-item">
+            <div>
+              <strong>{{this.name}}</strong>
+              <div class="muted">{{this.phone}} — {{this.specialty}}</div>
+            </div>
+            <div class="actions">
+              <a href="/employees/{{this.id}}" class="btn small">Detalhes</a>
+              <a href="/employees/edit/{{this.id}}" class="btn small ghost">Editar</a>
+              <form method="POST" action="/employees/delete/{{this.id}}" class="inline-form" onsubmit="return confirm('Excluir funcionário?');">
+                <button class="btn small danger" type="submit">Excluir</button>
+              </form>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p class="muted">Nenhum funcionário cadastrado.</p>
+    {{/if}}
+  </section>
+
+  {{#if selectedEmployee}}
+  <section class="detail-card">
+    <h3>Detalhes: {{selectedEmployee.name}}</h3>
+    <p><strong>Telefone:</strong> {{selectedEmployee.phone}}</p>
+    <p><strong>Especialidade:</strong> {{selectedEmployee.specialty}}</p>
+    <a class="btn" href="/employees">Voltar</a>
+  </section>
+  {{/if}}
+</section>

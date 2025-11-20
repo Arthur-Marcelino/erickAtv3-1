@@ -1,0 +1,15 @@
+{
+  "name": "limpeza-hbs",
+  "version": "1.0.0",
+  "description": "Painel CRUD para servi\u00e7o de limpeza usando Express + Handlebars",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "body-parser": "^1.20.2",
+    "method-override": "^3.0.0"
+  }
+}

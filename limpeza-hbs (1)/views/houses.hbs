@@ -1,0 +1,65 @@
+{{!< layouts/main }}
+<section class="crud-page">
+  <h2>Casas</h2>
+
+  <form id="house-form" method="POST" action="/houses" class="form-card">
+    <input type="hidden" name="id" value="{{editHouse.id}}" />
+    <label>
+      Endereço
+      <input name="address" value="{{editHouse.address}}" required />
+    </label>
+    <label>
+      Cidade
+      <input name="city" value="{{editHouse.city}}" />
+    </label>
+    <label>
+      Tamanho (m²)
+      <input type="number" name="size" value="{{editHouse.size}}" />
+    </label>
+    <label>
+      Empresa cliente (id)
+      <input name="companyId" value="{{editHouse.companyId}}" />
+    </label>
+    <div class="form-actions">
+      <button type="submit">{{#if editHouse.id}}Salvar alterações{{else}}Cadastrar casa{{/if}}</button>
+      {{#if editHouse.id}}
+        <a class="btn ghost" href="/houses">Cancelar</a>
+      {{/if}}
+    </div>
+  </form>
+
+  <section class="list-section">
+    <h3>Lista de casas</h3>
+    {{#if houses.length}}
+      <ul class="list">
+        {{#each houses}}
+          <li class="list-item">
+            <div>
+              <strong>{{this.address}} — {{this.city}}</strong>
+              <div class="muted">{{this.size}} m² — Empresa: {{this.companyId}}</div>
+            </div>
+            <div class="actions">
+              <a href="/houses/{{this.id}}" class="btn small">Detalhes</a>
+              <a href="/houses/edit/{{this.id}}" class="btn small ghost">Editar</a>
+              <form method="POST" action="/houses/delete/{{this.id}}" class="inline-form" onsubmit="return confirm('Excluir casa?');">
+                <button class="btn small danger" type="submit">Excluir</button>
+              </form>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p class="muted">Nenhuma casa cadastrada.</p>
+    {{/if}}
+  </section>
+
+  {{#if selectedHouse}}
+  <section class="detail-card">
+    <h3>Detalhes: {{selectedHouse.address}}</h3>
+    <p><strong>Cidade:</strong> {{selectedHouse.city}}</p>
+    <p><strong>Tamanho:</strong> {{selectedHouse.size}} m²</p>
+    <p><strong>Empresa cliente:</strong> {{selectedHouse.companyId}}</p>
+    <a class="btn" href="/houses">Voltar</a>
+  </section>
+  {{/if}}
+</section>
